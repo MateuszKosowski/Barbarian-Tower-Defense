@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://coayh1fw170fb"]
+
+[ext_resource type="Script" path="res://Scenes/Base/base.gd" id="1_3ouqo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5hic"]
+albedo_color = Color(0.82881, 2.71939e-06, 5.77569e-07, 1)
+
+[node name="Base" type="Node3D" groups=["base"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
+script = ExtResource("1_3ouqo")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 2.0
+height = 4.0
+sides = 40
+material = SubResource("StandardMaterial3D_r5hic")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+billboard = 1
+text = "Placeholder text"
+font_size = 500
+outline_size = 100
