@@ -1,4 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://3t68klkrfmgb"]
+[gd_scene load_steps=13 format=3 uid="uid://3t68klkrfmgb"]
+
+[ext_resource type="PackedScene" uid="uid://snxhmwdvvp15" path="res://Scenes/Turret/projectile.tscn" id="1_2todk"]
+[ext_resource type="Script" path="res://Scenes/Turret/turret.gd" id="1_equwq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bl0rm"]
 albedo_color = Color(0.194349, 0.194349, 0.194349, 1)
@@ -39,6 +42,8 @@ top_radius = 0.4
 height = 0.2
 
 [node name="Turret" type="Node3D"]
+script = ExtResource("1_equwq")
+projectile = ExtResource("1_2todk")
 
 [node name="TurretBase" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -63,3 +68,8 @@ mesh = SubResource("BoxMesh_2wd63")
 [node name="TopArmor" type="MeshInstance3D" parent="TurretBase/TurretTop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352285, 0)
 mesh = SubResource("CylinderMesh_6tkr0")
+
+[node name="Reload" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
