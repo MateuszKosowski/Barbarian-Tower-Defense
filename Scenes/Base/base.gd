@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var label_3d: Label3D = $Label3D
-@export var max_hp: int = 3
+@export var max_hp: int = 5
 var color_step: float = 1.0/max_hp
 var color_progress: float = 0
 var current_hp: int:
