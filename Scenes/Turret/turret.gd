@@ -4,6 +4,7 @@ extends Node3D
 @export var turret_range: float = 10.0
 var enemy_path: Path3D
 var target: PathFollow3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var barrels: Array = [$TurretBase/TurretTop/Visor/Barrel, $TurretBase/TurretTop/Visor/Barrel2]
 
 func _physics_process(delta: float) -> void:
@@ -13,6 +14,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_reload_timeout() -> void:
 	if target:
+		animation_player.play("Shooting")
 		var shot = projectile.instantiate()
 		shot.scale = Vector3(0.5, 0.5, 0.5)
 		var random_barrel = barrels[randi() % barrels.size()]

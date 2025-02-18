@@ -1,15 +1,18 @@
 extends PathFollow3D
 
 @export var speed: float = 5.0
-@export var max_hp: int = 50
+@export var max_hp: int = 75
 
 var curr_hp: int:
 	set(health_in):
+		if health_in < curr_hp:
+			animation_player.play("TakeDmg")
 		curr_hp = health_in
 		if curr_hp < 1:
 			queue_free()
 		
 @onready var base = get_tree().get_first_node_in_group("base")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	curr_hp = max_hp
