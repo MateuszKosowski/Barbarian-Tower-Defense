@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2rwh2jkn8pn1"]
+[gd_scene load_steps=17 format=3 uid="uid://c2rwh2jkn8pn1"]
 
 [ext_resource type="PackedScene" uid="uid://coemyyu7kfwjo" path="res://Scenes/RayPickerCamera/ray_pick_camera.tscn" id="1_nda0l"]
 [ext_resource type="MeshLibrary" uid="uid://w1r1yu7eorj8" path="res://MeshLibraries/SpaceLib.tres" id="1_q5k2q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/TurretManager.gd" id="5_tmalv"]
 [ext_resource type="PackedScene" uid="uid://3t68klkrfmgb" path="res://Scenes/Turret/turret.tscn" id="6_wbrk8"]
 [ext_resource type="Script" path="res://Scenes/Bank.gd" id="8_ql678"]
+[ext_resource type="PackedScene" uid="uid://bp66dm2lnx7dc" path="res://Scenes/DifficultiManager/difficulti_manager.tscn" id="9_uhcod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xbfr8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,6 +40,12 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.65098)
 
+[sub_resource type="Curve" id="Curve_qqqnf"]
+min_value = 10.0
+max_value = 150.0
+_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+point_count = 2
+
 [node name="BaseLvl" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -66,10 +73,11 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager")]
 curve = SubResource("Curve3D_4m5k7")
 script = ExtResource("3_t8ngk")
 enemy_scene = ExtResource("2_seqym")
+difficulty_manager = NodePath("../DifficultiManager")
 metadata/_edit_group_ = true
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
@@ -116,6 +124,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_gnxop")]
+max_hp = 60
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_tmalv")
@@ -143,4 +152,8 @@ text = "Placeholder
 "
 label_settings = SubResource("LabelSettings_8cdpw")
 
+[node name="DifficultiManager" parent="." instance=ExtResource("9_uhcod")]
+enemy_health_curve = SubResource("Curve_qqqnf")
+
 [connection signal="timeout" from="EnemyPath/SpawnTimer" to="EnemyPath" method="_on_spawn_timer_timeout"]
+[connection signal="stop_spawning_enemies" from="DifficultiManager" to="EnemyPath" method="_on_difficulti_manager_stop_spawning_enemies"]
