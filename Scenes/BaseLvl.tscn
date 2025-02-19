@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2rwh2jkn8pn1"]
+[gd_scene load_steps=15 format=3 uid="uid://c2rwh2jkn8pn1"]
 
 [ext_resource type="PackedScene" uid="uid://coemyyu7kfwjo" path="res://Scenes/RayPickerCamera/ray_pick_camera.tscn" id="1_nda0l"]
 [ext_resource type="MeshLibrary" uid="uid://w1r1yu7eorj8" path="res://MeshLibraries/SpaceLib.tres" id="1_q5k2q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/EnemyPath.gd" id="3_t8ngk"]
 [ext_resource type="Script" path="res://Scenes/TurretManager.gd" id="5_tmalv"]
 [ext_resource type="PackedScene" uid="uid://3t68klkrfmgb" path="res://Scenes/Turret/turret.tscn" id="6_wbrk8"]
+[ext_resource type="Script" path="res://Scenes/Bank.gd" id="8_ql678"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xbfr8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,6 +31,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cdpw"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.65098)
 
 [node name="BaseLvl" type="Node3D"]
 
@@ -113,5 +121,26 @@ autostart = true
 script = ExtResource("5_tmalv")
 turret = ExtResource("6_wbrk8")
 enemy_path = NodePath("../EnemyPath")
+
+[node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("8_ql678")
+
+[node name="Label" type="Label" parent="Bank"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Placeholder
+"
+label_settings = SubResource("LabelSettings_8cdpw")
 
 [connection signal="timeout" from="EnemyPath/SpawnTimer" to="EnemyPath" method="_on_spawn_timer_timeout"]
