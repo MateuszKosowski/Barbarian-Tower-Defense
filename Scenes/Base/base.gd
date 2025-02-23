@@ -17,7 +17,7 @@ var current_hp: int:
 func _ready() -> void:
 	current_hp = max_hp
 	# Testing
-	#Engine.time_scale = 3
+	Engine.time_scale = 3
 	
 func take_damage() -> void:
 	current_hp -= 1

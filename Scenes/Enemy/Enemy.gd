@@ -2,7 +2,7 @@ extends PathFollow3D
 
 @export var speed: float = 5.0
 @export var max_hp: int = 50
-@export var gold_value := 25
+@export var gold_value := 12
 
 var curr_hp: int:
 	set(health_in):
