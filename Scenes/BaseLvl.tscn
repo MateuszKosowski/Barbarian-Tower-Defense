@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2rwh2jkn8pn1"]
+[gd_scene load_steps=21 format=3 uid="uid://c2rwh2jkn8pn1"]
 
 [ext_resource type="PackedScene" uid="uid://coemyyu7kfwjo" path="res://Scenes/RayPickerCamera/ray_pick_camera.tscn" id="1_nda0l"]
 [ext_resource type="MeshLibrary" uid="uid://w1r1yu7eorj8" path="res://MeshLibraries/SpaceLib.tres" id="1_q5k2q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/EnemyPath.gd" id="3_t8ngk"]
 [ext_resource type="Script" path="res://Scenes/TurretManager.gd" id="5_tmalv"]
 [ext_resource type="PackedScene" uid="uid://3t68klkrfmgb" path="res://Scenes/Turret/turret.tscn" id="6_wbrk8"]
+[ext_resource type="FontFile" uid="uid://bkuhdsax8h8bv" path="res://Assets/Asap/static/Asap-Bold.ttf" id="8_q5wtl"]
 [ext_resource type="Script" path="res://Scenes/Bank.gd" id="8_ql678"]
 [ext_resource type="PackedScene" uid="uid://bp66dm2lnx7dc" path="res://Scenes/DifficultiManager/difficulti_manager.tscn" id="9_uhcod"]
 [ext_resource type="PackedScene" uid="uid://cklxvncil8pj6" path="res://Scenes/UI/victory_layer.tscn" id="10_1vl3d"]
@@ -36,6 +37,9 @@ point_count = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7his"]
 albedo_color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[sub_resource type="Theme" id="Theme_i6n7c"]
+default_font = ExtResource("8_q5wtl")
 
 [sub_resource type="LabelSettings" id="LabelSettings_8cdpw"]
 font_size = 64
@@ -144,6 +148,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_i6n7c")
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16

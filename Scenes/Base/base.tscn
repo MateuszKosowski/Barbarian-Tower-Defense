@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://coayh1fw170fb"]
+[gd_scene load_steps=4 format=3 uid="uid://coayh1fw170fb"]
 
 [ext_resource type="Script" path="res://Scenes/Base/base.gd" id="1_3ouqo"]
+[ext_resource type="FontFile" uid="uid://bkuhdsax8h8bv" path="res://Assets/Asap/static/Asap-Bold.ttf" id="2_7cvi2"]
 [ext_resource type="PackedScene" uid="uid://bxjrj1sbaunlr" path="res://Assets/Base.glb" id="2_frnxw"]
 
 [node name="Base" type="Node3D" groups=["base"]]
@@ -11,6 +12,7 @@ script = ExtResource("1_3ouqo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 billboard = 1
 text = "Placeholder text"
+font = ExtResource("2_7cvi2")
 font_size = 500
 outline_size = 100
 
